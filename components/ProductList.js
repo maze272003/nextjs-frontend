@@ -11,10 +11,12 @@ export default function ProductList({ products }) {
         <div key={product.id} className="border rounded-lg shadow-md bg-white overflow-hidden">
           
           <img
-            // Use the helper to build the correct URL
-            src={getImageUrl(product.image_path)}
+            // BAGUHIN MO ITO: Gamitin ang image_url galing sa API response
+            // Siguraduhin na may fallback image kung null ang image_url
+            src={product.image_url || '/placeholder-image.jpg'} 
             alt={product.name}
             className="w-full h-48 object-cover"
+            onError={(e) => { e.target.src = '/placeholder-image.jpg'; }} // Optional: Error handling
           />
 
           <div className="p-4">
